@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <title>Library Book Issue</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 20px;
+      background: url('https://images.unsplash.com/photo-1602722053020-af31042989d5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Inter', sans-serif;
+      color: #3a2e15;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .logout-btn {
+  background: linear-gradient(135deg, rgba(255, 182, 193, 0.9), rgba(255, 160, 180, 0.9));
+  color: #fff;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 182, 193, 0.4);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logout-btn:hover {
+  background: linear-gradient(135deg, rgba(255, 160, 180, 1), rgba(255, 140, 160, 1));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 182, 193, 0.6);
+}
+
+.logout-btn:active {
+  transform: translateY(0);
+}
+    
+    .logout-icon {
+      width: 18px;
+      height: 18px;
+    }
+    
+    .container {
+      background-color: rgba(255, 255, 255, 0.4);
+      padding: 40px 50px;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      max-width: 1200px;
+      width: 100%;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .header-banner {
+      background-color: rgba(255, 182, 193, 0.5);
+      color: #fdf8ec;
+      font-weight: 700;
+      padding: 16px 24px;
+      border-radius: 20px;
+      font-size: 1.3rem;
+      letter-spacing: 0.05em;
+      text-align: center;
+      text-transform: uppercase;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .title {
+      font-size: 2.6rem;
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: 0.05em;
+      color: #2f2512;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
+      text-transform: uppercase;
+    }
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .search-box {
+      width: 100%;
+      max-width: 600px;
+      padding: 14px 20px;
+      font-size: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      border-radius: 15px;
+      background-color: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(5px);
+      color: #3a2e15;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .search-box:focus {
+      outline: none;
+      border-color: rgba(255, 182, 193, 0.8);
+      background-color: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+    .search-box::placeholder {
+      color: rgba(58, 46, 21, 0.5);
+    }
+    .tables-container {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .tables-container table {
+      flex: 1 1 450px;
+      max-width: 550px;
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: rgba(255, 255, 255, 0.35);
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #3a2e15;
+    }
+    thead th {
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.3);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    thead th::before {
+      font-size: 14px;
+    }
+    tbody td {
+      padding: 12px;
+      font-size: 14px;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      transition: 0.3s ease;
+    }
+    tbody tr:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+    }
+    tbody tr.hidden {
+      display: none;
+    }
+    button {
+      background-color: #fff6e5;
+      color: #4b3b1b;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+    button:hover {
+      background-color: #ebd5aa;
+      transform: translateY(-2px);
+    }
+    img.book-cover {
+      width: 60px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .no-results {
+      text-align: center;
+      color: rgba(55, 34, 37, 0.6);
+      font-size: 1.1rem;
+      padding: 30px;
+      display: none;
+    }
+    @media (max-width: 1200px) {
+      .tables-container {
+        flex-wrap: wrap;
+      }
+      .tables-container table {
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin-bottom: 30px;
+      }
+    }
+    @media (max-width: 768px) {
+      .logout-btn {
+        top: 15px;
+        right: 15px;
+        padding: 10px 20px;
+        font-size: 13px;
+      }
+      
+      .container {
+        padding: 30px 20px;
+      }
+      .title {
+        font-size: 2rem;
+      }
+      thead th,
+      tbody td,
+      button {
+        font-size: 13px;
+        padding: 8px 10px;
+      }
+      .search-box {
+        font-size: 14px;
+        padding: 12px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Çıkış Yap Butonu -->
+<form method="POST" action="{% url 'logout' %}" style="position: fixed; top: 30px; right: 30px; z-index: 1000; margin: 0;">
+  {% csrf_token %}
+  <button type="submit" class="logout-btn" style="border: none;">
+    <svg class="logout-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1H3zm11 4.414l-4.293 4.293a1 1 0 01-1.414 0L4 7.414 5.414 6l3.293 3.293L13 5.414 14.414 6.828z" clip-rule="evenodd"/>
+      <path d="M11 3a1 1 0 100 2h2a1 1 0 100-2h-2z"/>
+    </svg>
+    Çıkış Yap
+  </button>
+</form>
+
+  <div class="container">
+    <div class="header-banner">Ödünç Aldığınız Kitaplar</div>
+
+    {% if messages %}
+    <div style="margin-bottom: 25px;">
+      {% for message in messages %}
+      <div style="
+        padding: 12px;
+        border-radius: 12px;
+        margin-bottom: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        {% if message.tags == 'error' %}
+          background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;
+        {% elif message.tags == 'warning' %}
+          background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba;
+        {% elif message.tags == 'success' %}
+          background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;
+        {% else %}
+          background-color: #cce5ff; color: #004085; border: 1px solid #b8daff;
+        {% endif %}
+      ">
+        {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="tables-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Ad Soyad</th>
+            <th>Kayıt Numarası</th>
+            <th>Branş</th>
+            <th>Kitap Adı</th>
+            <th>Yazar</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for t in li1 %}
+          <tr>
+            <td>{{ t.0 }}</td>
+            <td>{{ t.1 }}</td>
+            <td>{{ t.2 }}</td>
+            <td>{{ t.3 }}</td>
+            <td>{{ t.4 }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Veriliş Tarihi</th>
+            <th>İade Tarihi</th>
+            <th>Ceza</th>
+            <th>Durum</th>
+            <th>İşlem</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for t in li2 %}
+          <tr>
+            <td>{{ t.0 }}</td>
+            <td>{{ t.1 }}</td>
+            <td>
+              {% if t.3 == "Returned" %}
+                No Fine
+              {% else %}
+                {{ t.2 }}
+              {% endif %}
+            </td>
+            <td>{{ t.3 }}</td>
+            <td>
+              {% if t.3 == "Issued" %}
+                <button onclick="location.href='{% url 'returnbook' t.4 %}'" type="button">İade</button>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% if not li1 %}
+    <h2 style="text-align:center; color: rgba(55, 34, 37, 0.5); user-select:none;">Henüz bir kitap almadınız</h2>
+    {% endif %}
+
+    <div class="header-banner" style="margin-top: 50px;">Alabileceğiniz Kitaplar</div>
+
+    <div class="search-container">
+      <input type="text" 
+             class="search-box" 
+             id="bookSearch" 
+             placeholder="Kitap adı, yazar veya kategori ile ara..." 
+             onkeyup="searchBooks()">
+    </div>
+
+    <table id="booksTable">
+      <thead>
+        <tr>
+          <th>Kitap</th>
+          <th>Ad</th>
+          <th>Yazar</th>
+          <th>Kategori</th>
+          <th>İşlem</th>
+        </tr>
+      </thead>
+      <tbody id="booksTableBody">
+        {% for book in all_books %}
+        <tr class="book-row" 
+            data-name="{{ book.name|lower }}" 
+            data-author="{{ book.author|lower }}" 
+            data-category="{{ book.category|lower }}">
+          <td>
+            <img class="book-cover"
+                 src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-M.jpg"
+                 alt="Book Cover"
+               onerror="this.onerror=null; this.src='https://via.placeholder.com/60x90?text=No+Cover';" />
+          </td>
+          <td>{{ book.name }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.category }}</td>
+          <td>
+            <form method="POST" action="{% url 'issuebook' %}">
+              {% csrf_token %}
+              <input type="hidden" name="isbn2" value="{{ book.isbn }}">
+              <input type="hidden" name="enrollment2" value="{{ student.enrollment }}">
+              <button type="submit">KİTABI İSTE</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="no-results" id="noResults">
+      Arama kriterlerine uygun kitap bulunamadı.
+    </div>
+  </div>
+
+  <script>
+    function searchBooks() {
+      const searchInput = document.getElementById('bookSearch').value.toLowerCase();
+      const rows = document.querySelectorAll('.book-row');
+      const noResults = document.getElementById('noResults');
+      let visibleCount = 0;
+
+      rows.forEach(row => {
+        const name = row.getAttribute('data-name');
+        const author = row.getAttribute('data-author');
+        const category = row.getAttribute('data-category');
+
+        if (name.includes(searchInput) || 
+            author.includes(searchInput) || 
+            category.includes(searchInput)) {
+          row.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          row.classList.add('hidden');
+        }
+      });
+
+      if (visibleCount === 0) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

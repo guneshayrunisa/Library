@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Signup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: 
+        linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+        url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .signup-wrapper {
+      width: 100%;
+      max-width: 520px;
+      padding: 30px;
+    }
+
+    .alert-success {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 500;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      padding: 12px;
+      border-radius: 15px;
+      margin-bottom: 25px;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    .signup-form {
+      background-color: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 25px;
+      padding: 40px 35px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      color: #fff;
+    }
+
+    .signup-form h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 26px;
+      font-weight: 600;
+      color: #fff8e7;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+      padding-bottom: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      font-size: 14px;
+      margin-bottom: 6px;
+      display: block;
+      color: #fffbe2;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 20px;
+      background-color: rgba(255, 255, 255, 0.25);
+      color: #fff;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: #fff;
+      outline: none;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      background-color: rgba(255, 255, 255, 0.3);
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .signup-form a {
+      color: #fff4c2;
+      text-decoration: none;
+      font-size: 14px;
+      display: block;
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .signup-form a:hover {
+      text-decoration: underline;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px;
+      border-radius: 20px;
+      background-color: rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #fff;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #fff;
+      background-color: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    }
+
+    @media (max-width: 576px) {
+      .signup-form {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="signup-wrapper">
+
+    <div class="signup-form">
+      <form method="post" class="form-horizontal">
+        <h2>Member Signup</h2>
+        {% csrf_token %}
+        {% for field in form1 %}
+        <div class="form-group">
+          <label>{{ field.label_tag }}</label>
+          {{ field }}
+        </div>
+        {% endfor %}
+        {% for field in form2 %}
+        <div class="form-group">
+          <label>{{ field.label_tag }}</label>
+          {{ field }}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn">Sign Up</button>
+      </form>
+      <a href="{% url 'studentlogin' %}">Already have an account? Login here</a>
+    </div>
+  </div>
+
+</body>
+</html>

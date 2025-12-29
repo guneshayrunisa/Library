@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>LibraryApp</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        overflow: hidden;
+      }
+
+      .bg-slide {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("https://images.unsplash.com/photo-1602722053020-af31042989d5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: -1;
+      }
+
+      .login-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        max-width: 500px;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 182, 193, 0.5);
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        padding: 100px;
+        text-align: center;
+        color: #f5f0e6;
+
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .login-title {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 30px;
+        color: #f5f0e6;
+      }
+
+      .btn-custom {
+        width: 100%;
+        margin-bottom: 15px;
+      }
+
+      .btn-outline-secondary.btn-custom {
+        max-width: 250px;
+        padding: 0.25rem 0.8rem;
+        font-size: 0.85rem;
+        border-width: 1.5px;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+        color: #ffffff;
+        border-color: #fefefe;
+        background-color: transparent;
+        margin: 0 auto 15px auto;
+        display: block;
+      }
+
+      .btn-outline-secondary.btn-custom:hover {
+        background-color: #e956b3;
+        color: #3e2f1c;
+        border-color: #d1b280;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="bg-slide"></div>
+
+    <div class="login-container">
+      <div class="login-title">LibraryApp</div>
+
+      {% load static %}
+      <a
+        class="btn btn-outline-secondary btn-custom"
+        href="{% url 'studentlogin' %}"
+        role="button"
+        >User Login</a
+      >
+      <a
+        class="btn btn-outline-secondary btn-custom"
+        href="{% url 'studentsignup' %}"
+        role="button"
+        >Sign Up</a
+      >
+    </div>
+  </body>
+</html>
